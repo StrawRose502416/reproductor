@@ -5,16 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reproductor Dropbox</title>
     
-    <!-- Estilos -->
-    <link rel="stylesheet" href="css/style.css">
-    <!-- Font Awesome para iconos (alternativa a fontello) -->
+    <!-- Font Awesome para iconos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Estilos personalizados -->
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <div class="player-container">
+        <!-- Contenedor del video -->
         <div class="video-wrapper">
-            <video id="videoPlayer" class="video-player" poster="img/poster.jpg">
-                <!-- Las fuentes se cargarán con JavaScript -->
+            <video id="videoPlayer" class="video-player" poster="https://via.placeholder.com/1280x720/1a1a1a/667eea?text=Reproductor+Dropbox">
+                <!-- Las fuentes se cargarán dinámicamente -->
             </video>
             
             <!-- Overlay de carga -->
@@ -26,7 +28,7 @@
             <!-- Mensaje de error -->
             <div id="errorMessage" class="error-message" style="display: none;">
                 <i class="fas fa-exclamation-circle"></i>
-                <span id="errorText"></span>
+                <p id="errorText"></p>
                 <button onclick="location.reload()" class="retry-btn">
                     <i class="fas fa-redo"></i> Reintentar
                 </button>
@@ -35,14 +37,16 @@
         
         <!-- Controles del reproductor -->
         <div class="player-controls">
+            <!-- Barra de progreso -->
             <div class="progress-bar-container" id="progressBar">
                 <div class="progress-bar" id="progress"></div>
                 <div class="progress-buffer" id="buffer"></div>
             </div>
             
+            <!-- Botones de control -->
             <div class="controls-main">
                 <div class="controls-left">
-                    <button id="playPauseBtn" class="control-btn play-btn">
+                    <button id="playPauseBtn" class="control-btn">
                         <i class="fas fa-play"></i>
                     </button>
                     
@@ -53,30 +57,21 @@
                     </div>
                 </div>
                 
-                <div class="controls-center">
-                    <div class="video-quality" id="qualitySelector" style="display: none;">
-                        <button class="quality-btn" data-quality="auto">
-                            <i class="fas fa-hd"></i>
-                            <span>Auto</span>
-                        </button>
-                    </div>
-                </div>
-                
                 <div class="controls-right">
-                    <button id="volumeBtn" class="control-btn volume-btn">
+                    <button id="volumeBtn" class="control-btn">
                         <i class="fas fa-volume-up"></i>
                     </button>
                     
                     <input type="range" id="volumeSlider" class="volume-slider" min="0" max="1" step="0.1" value="1">
                     
-                    <button id="fullscreenBtn" class="control-btn fullscreen-btn">
+                    <button id="fullscreenBtn" class="control-btn">
                         <i class="fas fa-expand"></i>
                     </button>
                 </div>
             </div>
         </div>
         
-        <!-- Panel de configuración Dropbox -->
+        <!-- Panel de Dropbox -->
         <div class="dropbox-panel">
             <div class="dropbox-header">
                 <i class="fab fa-dropbox"></i>
@@ -88,7 +83,7 @@
                 <div class="input-wrapper">
                     <input type="url" id="dropboxUrl" 
                            placeholder="https://www.dropbox.com/s/.../video.mp4?dl=0"
-                           value="https://www.dropbox.com/s/7c1f0d9e3a2b4c5/video.mp4?dl=0">
+                           value="https://www.w3schools.com/html/mov_bbb.mp4">
                     <button id="loadVideoBtn" class="load-btn">
                         <i class="fas fa-cloud-download-alt"></i>
                         Cargar
@@ -101,12 +96,15 @@
             </div>
             
             <div class="dropbox-examples">
-                <p><strong>Ejemplos de prueba:</strong></p>
+                <p><strong>Videos de prueba:</strong></p>
                 <button class="example-link" data-url="https://www.w3schools.com/html/mov_bbb.mp4">
-                    Video MP4 de prueba
+                    🎬 Video MP4 (W3Schools)
                 </button>
                 <button class="example-link" data-url="https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/1080/Big_Buck_Bunny_1080_10s_1MB.mp4">
-                    Big Buck Bunny (10s)
+                    🐰 Big Buck Bunny (10s)
+                </button>
+                <button class="example-link" data-url="https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4">
+                    📹 Sample Video
                 </button>
             </div>
         </div>

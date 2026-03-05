@@ -1,3 +1,4 @@
+/* RESET BÁSICO */
 * {
     margin: 0;
     padding: 0;
@@ -6,7 +7,7 @@
 
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #667eea, #764ba2);
     min-height: 100vh;
     display: flex;
     justify-content: center;
@@ -14,16 +15,17 @@ body {
     padding: 20px;
 }
 
+/* CONTENEDOR PRINCIPAL */
 .player-container {
     max-width: 900px;
     width: 100%;
     background: #1a1a1a;
     border-radius: 16px;
     overflow: hidden;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
 }
 
-/* Video wrapper */
+/* WRAPPER DEL VIDEO */
 .video-wrapper {
     position: relative;
     background: #000;
@@ -37,14 +39,14 @@ body {
     cursor: pointer;
 }
 
-/* Loading overlay */
+/* LOADING OVERLAY */
 .loading-overlay {
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0,0,0,0.8);
+    background: rgba(0, 0, 0, 0.8);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -68,7 +70,7 @@ body {
     100% { transform: rotate(360deg); }
 }
 
-/* Error message */
+/* MENSAJE DE ERROR */
 .error-message {
     position: absolute;
     top: 50%;
@@ -88,13 +90,16 @@ body {
     margin-bottom: 10px;
 }
 
+.error-message p {
+    margin-bottom: 15px;
+}
+
 .retry-btn {
     background: white;
     color: #ff4444;
     border: none;
     padding: 8px 20px;
     border-radius: 4px;
-    margin-top: 10px;
     cursor: pointer;
     display: inline-flex;
     align-items: center;
@@ -106,13 +111,14 @@ body {
     background: #f0f0f0;
 }
 
-/* Player controls */
+/* CONTROLES */
 .player-controls {
     background: #2a2a2a;
     padding: 15px;
     color: white;
 }
 
+/* BARRA DE PROGRESO */
 .progress-bar-container {
     height: 5px;
     background: #404040;
@@ -126,11 +132,11 @@ body {
 .progress-bar {
     height: 100%;
     background: linear-gradient(90deg, #667eea, #764ba2);
-    border-radius: 5px;
     position: absolute;
     left: 0;
     top: 0;
     z-index: 2;
+    width: 0%;
 }
 
 .progress-buffer {
@@ -140,20 +146,31 @@ body {
     left: 0;
     top: 0;
     z-index: 1;
+    width: 0%;
 }
 
+/* CONTROLES PRINCIPALES */
 .controls-main {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
 }
 
-.controls-left, .controls-center, .controls-right {
+.controls-left {
     display: flex;
     align-items: center;
     gap: 15px;
 }
 
+.controls-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+/* BOTONES DE CONTROL */
 .control-btn {
     background: none;
     border: none;
@@ -166,31 +183,28 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all 0.3s;
+    transition: background 0.3s;
 }
 
 .control-btn:hover {
-    background: rgba(255,255,255,0.1);
+    background: rgba(255, 255, 255, 0.1);
 }
 
-.control-btn:active {
-    transform: scale(0.95);
-}
-
+/* DISPLAY DE TIEMPO */
 .time-display {
     font-size: 14px;
     font-family: monospace;
     color: #ccc;
 }
 
-/* Volume slider */
+/* CONTROL DE VOLUMEN */
 .volume-slider {
     width: 80px;
     height: 4px;
-    -webkit-appearance: none;
     background: #404040;
     border-radius: 2px;
     outline: none;
+    cursor: pointer;
 }
 
 .volume-slider::-webkit-slider-thumb {
@@ -211,7 +225,7 @@ body {
     border: none;
 }
 
-/* Dropbox panel */
+/* PANEL DE DROPBOX */
 .dropbox-panel {
     background: #1a1a1a;
     padding: 20px;
@@ -268,7 +282,7 @@ body {
 }
 
 .load-btn {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #667eea, #764ba2);
     color: white;
     border: none;
     padding: 10px 20px;
@@ -278,15 +292,10 @@ body {
     align-items: center;
     gap: 8px;
     font-weight: 600;
-    transition: transform 0.3s;
 }
 
 .load-btn:hover {
-    transform: scale(1.02);
-}
-
-.load-btn:active {
-    transform: scale(0.98);
+    opacity: 0.9;
 }
 
 .help-text {
@@ -319,7 +328,7 @@ body {
     font-size: 12px;
     cursor: pointer;
     margin-right: 8px;
-    transition: all 0.3s;
+    margin-bottom: 5px;
 }
 
 .example-link:hover {
@@ -327,11 +336,11 @@ body {
     color: white;
 }
 
-/* Responsive */
+/* RESPONSIVE */
 @media (max-width: 768px) {
     .controls-main {
         flex-direction: column;
-        gap: 10px;
+        align-items: flex-start;
     }
     
     .input-wrapper {
@@ -343,32 +352,7 @@ body {
     }
 }
 
-/* Estados */
+/* CLASES ÚTILES */
 .hidden {
     display: none !important;
-}
-
-/* Tooltips personalizados */
-[data-tooltip] {
-    position: relative;
-}
-
-[data-tooltip]:before {
-    content: attr(data-tooltip);
-    position: absolute;
-    bottom: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    padding: 5px 10px;
-    background: rgba(0,0,0,0.8);
-    color: white;
-    font-size: 12px;
-    border-radius: 4px;
-    white-space: nowrap;
-    display: none;
-    z-index: 30;
-}
-
-[data-tooltip]:hover:before {
-    display: block;
 }

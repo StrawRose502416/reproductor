@@ -1,5 +1,6 @@
 class DropboxPlayer {
     constructor() {
+        // Elementos del DOM
         this.video = document.getElementById('videoPlayer');
         this.playPauseBtn = document.getElementById('playPauseBtn');
         this.progressBar = document.getElementById('progress');
@@ -15,7 +16,6 @@ class DropboxPlayer {
         this.errorText = document.getElementById('errorText');
         this.dropboxUrl = document.getElementById('dropboxUrl');
         this.loadVideoBtn = document.getElementById('loadVideoBtn');
-        this.qualitySelector = document.getElementById('qualitySelector');
         
         this.isPlaying = false;
         this.isMuted = false;
@@ -39,7 +39,6 @@ class DropboxPlayer {
         this.volumeSlider.addEventListener('input', (e) => this.setVolume(e));
         this.volumeBtn.addEventListener('click', () => this.toggleMute());
         this.fullscreenBtn.addEventListener('click', () => this.toggleFullscreen());
-        
         this.loadVideoBtn.addEventListener('click', () => this.loadFromDropbox());
         
         // Ejemplos
@@ -53,7 +52,7 @@ class DropboxPlayer {
         // Teclado
         document.addEventListener('keydown', (e) => this.handleKeyPress(e));
         
-        // Inicializar con el primer video
+        // Cargar video inicial
         setTimeout(() => this.loadFromDropbox(), 100);
     }
     
@@ -62,10 +61,10 @@ class DropboxPlayer {
         
         // Si es URL de Dropbox
         if (url.includes('dropbox.com')) {
-            // Convertir www.dropbox.com a dl.dropboxusercontent.com
+            // Convertir a enlace directo
             url = url.replace('www.dropbox.com', 'dl.dropboxusercontent.com');
             
-            // Cambiar dl=0 por dl=1 o raw=1
+            // Asegurar parámetro de descarga
             if (url.includes('?dl=0')) {
                 url = url.replace('?dl=0', '?dl=1');
             } else if (!url.includes('?dl=1') && !url.includes('raw=1')) {
@@ -98,7 +97,7 @@ class DropboxPlayer {
         // Crear nueva fuente
         const source = document.createElement('source');
         source.src = url;
-        source.type = this.getVideoType(url);
+        source.type = 'video/mp4';
         this.video.appendChild(source);
         
         // Recargar video
@@ -110,14 +109,6 @@ class DropboxPlayer {
                 this.showError('No se pudo cargar el video. Verifica la URL');
             }
         }, 10000);
-    }
-    
-    getVideoType(url) {
-        const extension = url.split('.').pop().toLowerCase();
-        if (extension === 'mp4') return 'video/mp4';
-        if (extension === 'ogv' || extension === 'ogg') return 'video/ogg';
-        if (extension === 'webm') return 'video/webm';
-        return 'video/mp4'; // Por defecto
     }
     
     togglePlay() {
@@ -181,7 +172,6 @@ class DropboxPlayer {
         this.volume = e.target.value;
         this.video.volume = this.volume;
         
-        // Actualizar icono
         if (this.volume == 0) {
             this.volumeBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
             this.isMuted = true;
@@ -226,20 +216,24 @@ class DropboxPlayer {
         
         // Flechas para navegar
         if (e.code === 'ArrowLeft') {
+            e.preventDefault();
             this.video.currentTime -= 10;
         }
         
         if (e.code === 'ArrowRight') {
+            e.preventDefault();
             this.video.currentTime += 10;
         }
         
         // M para mute
         if (e.code === 'KeyM') {
+            e.preventDefault();
             this.toggleMute();
         }
         
         // F para fullscreen
         if (e.code === 'KeyF') {
+            e.preventDefault();
             this.toggleFullscreen();
         }
     }
