@@ -1,33 +1,36 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Media</title>
-
-<link rel="stylesheet" href="css/bootstrap.min.css">
-<link rel="stylesheet" href="css/main.css">
-<link rel="stylesheet" href="css/fontello.css">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Media</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/fontello.css">
 </head>
 <body>
-	<div id="media">
-		<video id="video" preload poster="img/bbt.jpeg">
-			<!-- Primero intenta con MP4 (mejor compatibilidad) -->
-			<source src="canto_mortal.mp4" type="video/mp4">
-			
-			Tu navegador no soporta el elemento de video.
-		</video>
-		<nav>
-			<div id="button">
-				<button type="button" class="btn btn-primary" id="repro">Play</button>
-			</div>
-			<div id="bar">
-				<div id="progress"></div>
-			</div>
-		</nav>
-	</div>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/jquery.min.js"></script>
-<script src="js/main.js"></script>
+    <div id="media">
+        <video id="video" preload="auto" poster="img/bbt.jpeg" controls style="width:100%">
+            <!-- Intenta con MP4 primero -->
+            <source src="videos/The Big Bang Theory.mp4" type="video/mp4">
+            <!-- Fallback a OGV -->
+            <source src="videos/The Big Bang Theory.ogv" type="video/ogg">
+            <!-- Mensaje si no hay soporte -->
+            Tu navegador no soporta el elemento de video.
+        </video>
+        <nav>
+            <div id="button">
+                <button type="button" class="btn btn-primary" id="repro">Play</button>
+            </div>
+            <div id="bar">
+                <div id="progress"></div>
+            </div>
+        </nav>
+    </div>
+    
+    <!-- Scripts -->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>
